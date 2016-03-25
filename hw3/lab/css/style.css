@@ -1,0 +1,50 @@
+body {
+    background-color: #eee;
+    padding: 2em;
+}
+
+h1,
+h2,
+h3 {
+    font-family: sans-serif;
+}
+
+h3 {
+    font-size: 85%;
+    border-bottom: 1px solid silver;
+    padding-bottom: .5em;
+}
+
+div.bar {
+    display: inline-block;
+    width: 20px;
+    height: 75px;	/* Gets overriden by D3-assigned height below */
+    margin-right: 2px;
+    background-color: red;
+}
+
+.city-label{
+    font-family: sans-serif;
+    font-size: 11px;
+    text-anchor: middle;
+}
+
+.number {
+    font-family: sans-serif;
+    font-size: 16px;
+    padding:1em;
+}
+
+.menu {
+    float: right;
+    padding: .35em;
+    font-size: 1em;
+    background-color: white;
+    border: 1px solid silver;
+}
+
+.menu a {
+    font-family: sans-serif;
+    padding-left: .5em;
+    padding-right: .5em;
+}

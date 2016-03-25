@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 3 - Activity I - Willy Karam</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<script src="js/d3.v3.min.js"></script>
+
+<div class="menu">
+  <a href="index.html">Activity III </a> |
+  <a href="activityII.html">Activity II </a> |
+  <a href="activityI.html">Activity I </a>
+</div>
+
+<h1>CS171 - Lab 3 - Activity I</h1>
+<h3>Student: Willy Karam (HID: 20847069)</h3>
+
+<script type="text/javascript">
+  var numericData = [1, 2, 4, 8, 16];
+  // Add svg element (drawing space)
+  var svg = d3.select("body").append("svg")
+  .attr("width", 300)
+  .attr("height", 50);
+  // Add rectangle
+  svg.selectAll("rect")
+  .data(numericData)
+  .enter()
+  .append("rect")
+  .attr("fill", "red")
+  .attr("width", 50)
+  .attr("height", 50)
+  .attr("y", 0)
+  .attr("x", function(d, index) {
+    return (index * 60);
+  });
+</script>
+
+<br>
+
+<script type="text/javascript">
+  var states = ["Connecticut", "Main", "Massachusetts", "New Hampshire", "Rhode Island"];
+
+  d3.select("body").selectAll("p")
+    .data(states)
+    .enter()
+    .append("p")
+    .text(function(d){ return d; })
+    .attr("class", "custom-paragraph")
+    .style("color", "blue")
+    .style("font-weight", function(d) {
+      if(d == "Massachusetts")
+        return "bold";
+      else
+        return "normal";
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 3 - Activity III - Willy Karam</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<script src="js/d3.v3.min.js"></script>
+<script src="js/main.js"></script>
+
+
+<div class="menu">
+    <a href="index.html">Activity III </a> |
+    <a href="activityII.html">Activity II </a> |
+    <a href="activityI.html">Activity I </a>
+</div>
+
+<h1>CS171 - Lab 3 - Activity III</h1>
+<h3>Student: Willy Karam (HID: 20847069)</h3>
+
+<script type="text/javascript">
+
+  d3.csv('data/cities.csv', function(data) { // Define the data source
+    var euData = data.filter(function(d){return d.eu === 'true'}) //filter to eu cities
+
+    //Print Number of Cities
+    var number = d3.select("body").append("p")
+      .text("Number of Cities: " + euData.length)
+      .attr("class", "number")
+
+    //Set Drawing area
+    var svg = d3.select("body").append("svg")
+      .attr("width", 700)
+      .attr("height", 550)
+
+    //Add Circles
+    var circles = svg.selectAll("circle")
+      .data(euData)
+      .enter()
+      .append("circle") // Add Circles
+      .attr("cx", function(d){return d.x})
+      .attr("cy", function(d){return d.y})
+      .attr("r", function(d) {
+        if(d.population < 1000000)  // Set circle size
+          return 4;
+        else
+          return 8;
+      })
+
+
+
+    //Add City Labels
+    var labels = svg.selectAll("text")
+      .data(euData)
+      .enter()
+      .append("text")
+      .attr("x", function(d){
+        if (d.city === "Budapest") { // Adjust cramping of Vienna/Budapest
+          d.x = +d.x + 10
+        }
+        return d.x
+      })
+      .attr("y", function(d){
+         d.y = +d.y - 12
+         return d.y
+      })
+      .attr("class", "city-label")
+      .text(function(d){return d.city})
+      .style("opacity", function(d) { // Hide labels for smaller cities
+        if(d.population > 1000000)
+          return 1;
+        else
+          return 0;
+      })
+  });
+
+</script>
+
+</body>
+</html>

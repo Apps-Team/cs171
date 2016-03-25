@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework 3 - Willy Karam (HID: 20847069)</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/d3.v3.min.js"></script>
+<script src="js/main.js"></script>
+
+<h1>CS171 - Homework 3 - The World's Tallest Buildings</h1>
+<h3>Student: Willy Karam (HID: 20847069)</h3>
+
+
+
+<script type="text/javascript">
+
+
+
+  d3.csv('data/buildings.csv', function(data) { // Define the data source
+      data.sort(function(a,b) {return b.height_px-a.height_px;}); // Sort data by building height
+
+
+    function click(buildingName) {
+      buildingDetails = data.filter(function(d){return d.building === buildingName})
+
+      //Set Drawing area
+      d3.select("building").remove()
+      var building = d3.select("#right-inner")
+      .data(buildingDetails)
+
+      .append("building")
+      .attr("class","building")
+        building.append("h4")
+          .attr("class","building-name")
+          .text(function(d){return d.building})
+        building.append("div")
+          .attr("class","building-row")
+            .html("<span class='building-label'>City: </span>")
+            .append("span")
+              .attr("class","building-detail")
+              .text(function(d){return d.city})
+        building.append("div")
+          .attr("class","building-row")
+          .html("<span class='building-label'>Country: </span>")
+            .append("span")
+              .attr("class","building-detail")
+              .text(function(d){return d.country})
+        building.append("div")
+          .attr("class","building-row")
+          .html("<span class='building-label'>Height (in meters): </span>")
+            .append("span")
+              .attr("class","building-detail")
+              .text(function(d){return d.height_m})
+        building.append("div")
+          .attr("class","building-row")
+          .html("<span class='building-label'>Height (in feet): </span>")
+            .append("span")
+              .attr("class","building-detail")
+              .text(function(d){return d.height_ft})
+        building.append("div")
+          .attr("class","building-row")
+            .html("<span class='building-label'>Floors: </span>")
+            .append("span")
+              .attr("class","building-detail")
+              .text(function(d){return d.floors})
+        building.append("div")
+          .attr("class","building-row")
+            .html("<span class='building-label'>Year Completed: </span>")
+            .append("span")
+              .attr("class","building-detail")
+              .text(function(d){return d.completed })
+        building.append("div")
+          .attr("class","building-photo")
+          .append("img")
+            .attr("src",function(d){
+              return "data/img/" + d.image;
+            })
+      }
+
+
+    //Set Drawing area
+    var svg = d3.select("#left-inner").append("svg")
+      .attr("width", 500)
+      .attr("height", 500)
+
+
+
+    //Add Bars
+    var rects = svg.selectAll("rect")
+      .data(data)
+      .enter()
+      .append("rect") // Add Circles
+      .attr("fill", "silver")
+      .attr("width", function(d){ return d.height_px; })
+      .attr("height", 20)
+      .attr("x",200)
+      .attr("y", function(d, i) {
+//          return dy*i;
+          return (i * 21);
+      })
+      .on("click", function(d) {
+          var b = d.building;
+          click(b);
+      });
+
+      //Add Building Name
+      var name = svg.selectAll("text.building-name")
+      .data(data)
+      .enter()
+      .append("text")
+      .attr("class", "building-name")
+      .attr("text-anchor", "end")
+      .text(function(d){return d.building})
+      .attr("x",180)
+      .attr("y", function(d, i) {return (i * 20 + 20)})
+      .on("click", function(d) {
+          var b = d.building;
+           click(b);
+        });
+
+
+      //Add Building Height
+      var yTextPadding = 20;
+
+      var height = svg.selectAll("text.building-height")
+      .data(data)
+      .enter()
+      .append("text")
+      .attr("class", "building-height")
+      .attr("text-anchor", "start")
+      .text(function(d){return d.height_m})
+      .attr("height", 20)
+      .attr("x",function(d){
+          d.height_px = +d.height_px + 170
+          return d.height_px
+      })
+      .attr("y", function(d, i) {return (i * 20+19)});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  });
+
+</script>
+
+
+<div class="row">
+    <div class="col-sm-6" id="left">
+      <div id="left-inner">
+
+      </div>
+    </div>
+    <div class="col-sm-6" id="right">
+        <div id="right-inner">
+
+    </div>
+</div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 3 - Activity II - Willy Karam</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<script src="js/d3.v3.min.js"></script>
+<script src="js/activity2-main.js"></script>
+
+<div class="menu">
+  <a href="index.html">Activity III </a> |
+  <a href="activityII.html">Activity II </a> |
+  <a href="activityI.html">Activity I </a>
+</div>
+
+<h1>CS171 - Lab 3 - Activity II</h1>
+<h3>Student: Willy Karam (HID: 20847069)</h3>
+
+
+
+<script type="text/javascript">
+
+  var sandwiches = [
+    { name: "Thesis", price: 7.95, size: "large" },
+	{ name: "Dissertation", price: 8.95, size: "large" },
+	{ name: "Highlander", price: 6.50, size: "small" },
+	{ name: "Just Tuna", price: 6.50, size: "small" },
+	{ name: "So-La", price: 7.95, size: "large" },
+	{ name: "Special", price: 12.50, size: "small" }
+  ];
+	
+  // Add svg element (drawing space)
+  var svg = d3.select("body").append("svg")
+	.attr("width", 500)
+	.attr("height", 500);
+
+	// Add circles
+	svg.selectAll("circle")
+
+	// Get data
+	.data(sandwiches)
+	.enter()
+	.append("circle") // attach a circle
+	.style("stroke", "black") // set the line colour
+
+	.attr("cy", 80) // position the y-centre
+
+	// position the x-centre w/spacing
+	.attr("cx", function(d, i) {
+	  return ((i * 50) + 25);
+	})
+
+	// set the radius
+	.attr("r", function(d) {
+	  if(d.size == "small")
+	    return 10;
+	  else
+	    return 20;
+	})
+
+	// set the fill based on price
+	.style("fill", function(d) {
+	  if(d.price < 7.00)
+	    return "green";
+	  else
+	    return "yellow";
+	});
+
+</script>
+
+
+</body>
+</html>
