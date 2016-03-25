@@ -1,0 +1,91 @@
+
+
+/**** ADD YOUR STYLES ****/
+
+body {
+  background-color: #eee;
+  padding: 2em;
+}
+
+.menu {
+  float: right;
+  padding: .35em;
+  font-size: 1em;
+  background-color: white;
+  border: 1px solid silver;
+}
+
+.menu a {
+  font-family: sans-serif;
+  padding-left: .5em;
+  padding-right: .5em;
+}
+
+
+
+
+/****************/
+/*   BAR-CHART  */
+/****************/
+
+.bar {
+  fill: #3C948B;
+}
+
+.bar:hover {
+  fill: #327972;
+}
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line,
+.domain {
+  fill: none;
+  stroke: #888;
+  shape-rendering: crispEdges;
+}
+
+
+h1 {
+  text-align: center;
+  clear: both;
+  margin-bottom: .5em;
+}
+
+#chart-area {
+  width: 700px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#chart-area text {
+  font-size: 11px;
+}
+
+.axis-label {
+  fill: #888;
+  font-size: 10px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font-family: sans-serif;
+  font-size: 11px;
+}
+
+p {
+  text-align: center;
+  margin-top: 2em;
+  font-size: .9em;
+}
+
+
